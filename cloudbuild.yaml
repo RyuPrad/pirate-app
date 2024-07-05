@@ -1,5 +1,4 @@
 steps:
-
   # Build app
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'us-central1-docker.pkg.dev/immig4u/my-repo/hello:$COMMIT_SHA', '.']
@@ -26,3 +25,11 @@ steps:
           '--region', 'us-central1',
           '--to-revisions=LATEST=50']
     id: CANARY
+
+# Add this section to specify the logs bucket
+options:
+  logging: GCS_ONLY
+  logsBucket: 'gs://immigration-app'
+
+# If you're using a custom service account, specify it here
+serviceAccount: 'projects/immig4u/serviceAccounts/ryu-201@immig4u.iam.gserviceaccount.com'
