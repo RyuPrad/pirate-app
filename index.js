@@ -8,7 +8,7 @@ app.listen(port, () => {
 });
 
 app.get('/api/pirates/:id', (req, res) => {
-    const id = req.params(id);
+    const id = req.params.id;
     const pirate = getPirate(id);
     if (!pirate) {
         res.status(404).send({ error: `Pirate ${id} not found` });
